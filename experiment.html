@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>影片真偽辨識實驗</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <style>
+        /* 讓 Tab 不能手動點擊，必須透過按鈕 */
+        .nav-link { pointer-events: none; }
+        .nav-link.active { pointer-events: auto; }
+    </style>
+</head>
+
+<body class="bg-light my-3">
+    <div class="container mt-3 mt-lg-5">
+        <header class="mb-4">
+            <h2 class="display-6 text-center">生成式AI影⾳標籤之動態解釋機制對使⽤者信任校準影響之研究</h2>
+            <h5 class="text-center text-muted">目前進度：第 <span id="current-idx-text">1</span> / 32 題</h5>
+        </header>
+
+        <main>
+            <ul class="nav nav-tabs nav-justified" id="experimentTab">
+                <li class="nav-item"><a href="#step-1" id="step-1-tab" data-bs-toggle="tab" class="nav-link h3 active">第一階段</a></li>
+                <li class="nav-item"><a href="#step-2" id="step-2-tab" data-bs-toggle="tab" class="nav-link h3">第二階段</a></li>
+                <li class="nav-item"><a href="#step-3" id="step-3-tab" data-bs-toggle="tab" class="nav-link h3">第三階段</a></li>
+            </ul>
+
+            <div class="tab-content border bg-white p-4 shadow-sm">
+                <div id="step-1" class="tab-pane fade show active pt-4">
+                    <div class="row my-3">
+                        <div class="col-lg-6">
+                            <div class="d-flex justify-content-center align-items-center bg-dark rounded shadow" style="height: 450px; overflow: hidden;">
+                                <video id="v1" class="mw-100 mh-100 object-fit-contain" controls src=""></video>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <h5 class="text-center my-2">您認爲此影片為真實影片還是AI生成影片？</h5>
+                            <div class="form-check mb-3">
+                                <input type="radio" id="p1-real" class="form-check-input" name="p1_choice" value="真實影片">
+                                <label for="p1-real" class="form-label">真實影片</label>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input type="radio" id="p1-ai" class="form-check-input" name="p1_choice" value="AI生成影片">
+                                <label for="p1-ai" class="form-label">AI生成影片</label>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-outline-secondary d-block ms-auto" id="go-to-step-2">前往第二階段</button>
+                </div>
+
+                <div id="step-2" class="tab-pane fade pt-4">
+                    <div class="row my-3">
+                        <span class="h4 mb-0 text-dark">
+                            倒數：<span id="timer-text" class="fw-bold">30</span> 秒
+                        </span>
+                        <div class="col-lg-6">
+                            <div class="d-flex justify-content-center align-items-center bg-dark rounded shadow" style="height: 450px; overflow: hidden;">
+                                <video id="v2" class="mw-100 mh-100 object-fit-contain" controls src=""></video>
+                            </div>
+                            <h5 id="ai-hint-text" class="text-center mt-3 alert alert-info">AI 提示加載中...</h5>
+                        </div>
+                        <div class="col-lg-6">
+                            <h5 class="text-center my-2">您認爲此影片為真實影片還是AI生成影片？</h5>
+                            <div class="form-check mb-3">
+                                <input type="radio" id="p2-real" class="form-check-input" name="p2_choice" value="真實影片">
+                                <label for="p2-real" class="form-label">真實影片</label>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input type="radio" id="p2-ai" class="form-check-input" name="p2_choice" value="AI生成影片">
+                                <label for="p2-ai" class="form-label">AI生成影片</label>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-outline-secondary ms-auto d-block" id="go-to-step-3">前往第三階段</button>
+                </div>
+
+                <div id="step-3" class="tab-pane fade pt-4">
+                    <div class="alert alert-success text-center mb-4">
+                        <h4 id="correct-answer-text">正確答案：加載中...</h4>
+                    </div>
+                    <div class="row my-2 text-center">
+                        <h5>請問到目前為止您對AI輔助標籤的信任程度為何？ (1-10分)</h5>
+                        <div class="btn-group btn-group-lg w-100 mt-3 px-5">
+                            <input type="radio" class="btn-check" name="trust-a" id="t1" value="1"><label class="btn btn-outline-secondary" for="t1">1</label>
+                            <input type="radio" class="btn-check" name="trust-a" id="t2" value="2"><label class="btn btn-outline-secondary" for="t2">2</label>
+                            <input type="radio" class="btn-check" name="trust-a" id="t3" value="3"><label class="btn btn-outline-secondary" for="t3">3</label>
+                            <input type="radio" class="btn-check" name="trust-a" id="t4" value="4"><label class="btn btn-outline-secondary" for="t4">4</label>
+                            <input type="radio" class="btn-check" name="trust-a" id="t5" value="5"><label class="btn btn-outline-secondary" for="t5">5</label>
+                            <input type="radio" class="btn-check" name="trust-a" id="t6" value="6"><label class="btn btn-outline-secondary" for="t6">6</label>
+                            <input type="radio" class="btn-check" name="trust-a" id="t7" value="7"><label class="btn btn-outline-secondary" for="t7">7</label>
+                            <input type="radio" class="btn-check" name="trust-a" id="t8" value="8"><label class="btn btn-outline-secondary" for="t8">8</label>
+                            <input type="radio" class="btn-check" name="trust-a" id="t9" value="9"><label class="btn btn-outline-secondary" for="t9">9</label>
+                            <input type="radio" class="btn-check" name="trust-a" id="t10" value="10"><label class="btn btn-outline-secondary" for="t10">10</label>
+                        </div>
+                    </div>
+                    
+                    <button type="button" id="submitButton" class="btn btn-primary btn-lg mt-5 d-block ms-auto">
+                        下一題
+                        <span class="spinner-border spinner-border-sm d-none"></span>
+                    </button>
+                </div>
+                <!--問卷部分-->
+                <div id="demographics" class="tab-pane fade pt-4">
+                    <div class="card shadow-sm mx-auto" style="max-width: 650px; border-top: 5px solid #0d6efd;">
+                        <div class="card-header bg-white text-dark">
+                            <p class="text-muted text-center mb-0 mt-2">請完成以下問卷以結束實驗</p>
+                        </div>
+                        <div class="card-body p-4">
+                            <form id="demographicForm">
+                                
+                                <!-- 性別 -->
+                                <div class="mb-4">
+                                    <label class="form-label fw-bold">1. 您的性別</label>
+                                    <div class="d-flex gap-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="gender" value="Male" id="g1" required>
+                                            <label class="form-check-label" for="g1">男</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="gender" value="Female" id="g2">
+                                            <label class="form-check-label" for="g2">女</label>
+                                        </div>
+                                    </div>
+                                </div>
+                
+                                <!-- 年齡 (改用區間 Radio) -->
+                                <div class="mb-4">
+                                    <label class="form-label fw-bold">2. 您的年齡範圍</label>
+                                    <div class="row">
+                                        <div class="col-6 mb-2">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="age" value="18-" id="a1" required>
+                                                <label class="form-check-label" for="a1">18歲以下</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 mb-2">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="age" value="18-24" id="a2" required>
+                                                <label class="form-check-label" for="a2">18-24 歲</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 mb-2">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="age" value="25-34" id="a3">
+                                                <label class="form-check-label" for="a3">25-34 歲</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 mb-2">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="age" value="35-44" id="a4">
+                                                <label class="form-check-label" for="a4">35-44 歲</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="age" value="45+" id="a5">
+                                                <label class="form-check-label" for="a5">45 歲以上</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                
+                                <!-- 教育程度 -->
+                                <div class="mb-4">
+                                    <label class="form-label fw-bold">3. 您的最高學歷</label>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="edu" value="HighSchool" id="e1" required>
+                                        <label class="form-check-label" for="e1">高中/職</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="edu" value="Bachelor" id="e2">
+                                        <label class="form-check-label" for="e2">大學/專科</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="edu" value="Master" id="e3">
+                                        <label class="form-check-label" for="e3">碩士 (含在學)</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="edu" value="PhD" id="e4">
+                                        <label class="form-check-label" for="e4">博士 (含在學)</label>
+                                    </div>
+                                </div>
+                
+                                <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">結束實驗</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+               
+        </div>
+        </main>
+    </div>
+
+    <script src="../static/js/experiment.js"></script>
+</body>
+</html>
