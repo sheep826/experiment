@@ -410,6 +410,7 @@ document.querySelector('#submitButton').addEventListener('click', async function
 
     await fetch(APPS_SCRIPT_URL, {
         method: 'POST',
+        mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
     });
@@ -535,6 +536,7 @@ document.getElementById('demographicForm').addEventListener('submit', async func
     try {
         await fetch(APPS_SCRIPT_URL, {
             method: 'POST',
+            mode: 'no-cors',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(demoPayload)
         });
