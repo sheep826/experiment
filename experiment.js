@@ -1,4 +1,4 @@
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxMigbTeki9uMgAKynIkuXAIxu0mBS1Pv2obREQ1cKOuMQyTryNhz9uhypK0JG3el7a/exec";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby0HdYaeSKy-hINgIatkYLw6GU8q-Fh7M278fU9w4frmhicsABwGfCRBSnoOA6wTSfe/exec";
 // 1. 設定 30 題的資料清單
 const questions = [
     { //泰國大象
