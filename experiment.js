@@ -423,18 +423,19 @@ document.querySelector('#submitButton').addEventListener('click', async function
         this.disabled = false;
         this.querySelector('.spinner-border').classList.add('d-none');
     } else {
-        // --- 修改這裡：32 題做完後，不要跳跳轉頁面，改為切換到問卷分頁 ---
-    // 隱藏所有的階段分頁
-    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('show', 'active'));
     
-    // 顯示問卷分頁 (假設你的 HTML 中問卷 ID 為 demographics)
+    // 隱藏所有的階段分頁
+    // 更新進度顯示為 24/24
+    const idxElement = document.getElementById('current-idx-text');
+    if(idxElement) idxElement.innerText = questions.length;
+    // 隱藏 tab 標籤列
+    document.getElementById('experimentTab').style.display = 'none';
+    // 切換到問卷分頁
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('show', 'active'));
     const demoTab = document.getElementById('demographics');
     if (demoTab) {
         demoTab.classList.add('show', 'active');
         window.scrollTo(0, 0);
-    } else {
-        // 如果沒抓到分頁，才跳感謝頁
-        window.location.href = '/thank_you';
     }
     }
 });
