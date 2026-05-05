@@ -333,7 +333,7 @@ function timeIsUp() {
     alert("30 秒作答時間已到！系統將自動記錄並進入評分階段。");
 
     // 3. 【核心跳轉邏輯】直接切換分頁，不經過按鈕點擊
-    if (v2) v2.pause();
+    if (v2) v2.src = v2.src;
     clearInterval(timerInterval);
 
     const step3TabEl = document.querySelector('#step-3-tab');
