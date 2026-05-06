@@ -310,7 +310,7 @@ questions.push(...finalSequence);
 // prepareExperimentalFlow(questions);
 
 let timerInterval;
-let lastTrustScore = 6; // 預設起始信任值
+let lastTrustScore = 4; // 預設起始信任值
 let currentHintType = ""; 
 let currentIndex = 0;
 const userId = "Experimenter_" + crypto.randomUUID().split('-')[0].toUpperCase() + "_" + Date.now();
