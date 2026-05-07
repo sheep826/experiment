@@ -329,6 +329,14 @@ function timeIsUp() {
         if (target) target.checked = true;
     }
 
+    // 1b. 若信任程度未選，自動選 4 分（普通）
+    const trustAlreadyChecked = document.querySelector('input[name="trust-a"]:checked');
+    if (!trustAlreadyChecked) {
+        console.log("時間到，自動帶入信任程度 4 分...");
+        const defaultTrust = document.querySelector('input[name="trust-a"][value="4"]');
+        if (defaultTrust) defaultTrust.checked = true;
+    }
+
     // 2. 顯示強制提醒
     alert("30 秒作答時間已到！系統將自動記錄並進入評分階段。");
 
@@ -367,6 +375,7 @@ document.querySelector('#go-to-step-2').addEventListener('click', () => {
 
 document.querySelector('#go-to-step-3').addEventListener('click', () => {
     if(!document.querySelector('input[name="p2_choice"]:checked')) return alert("請先選擇答案");
+    if(!document.querySelector('input[name="trust-a"]:checked')) return alert("請評分信任程度");
     // 1. 停止第二階段影片播放
     if (v2) {
         v2.src = "";
@@ -381,7 +390,6 @@ document.querySelector('#go-to-step-3').addEventListener('click', () => {
 // 3. 提交本題數據並換題
 document.querySelector('#submitButton').addEventListener('click', async function () {
     const trust = document.querySelector('input[name="trust-a"]:checked');
-    if(!trust) return alert("請評分信任程度");
 
     this.disabled = true;
     this.querySelector('.spinner-border').classList.remove('d-none');
@@ -475,17 +483,14 @@ function renderNextQuestion() {
     const q = questions[currentIndex];
     let displayHint = "";
 
-    // --- 完全根據信任分數決定解釋類型，不論影片真偽 ---
+    // --- 完全給現行標籤 ---
     if (lastTrustScore < 3) {
-        // 低信任度 -> 給予「正面（對比）」解釋
-        displayHint = q.Positive;
-        currentHintType = "Positive";
+        displayHint = q.nowtag;
+        currentHintType = "Nowtag";
     } else if (lastTrustScore > 5) {
-        // 高信任度 -> 給予「反面」解釋
-        displayHint = q.Negative;
-        currentHintType = "Negative";
+        displayHint = q.nowtag;
+        currentHintType = "Nowtag";
     } else {
-        // 中等信任度 -> 給予「現行」解釋
         displayHint = q.nowtag;
         currentHintType = "Nowtag";
     }

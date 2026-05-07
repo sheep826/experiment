@@ -18,15 +18,14 @@
 <body class="bg-light my-3">
     <div class="container mt-3 mt-lg-5">
         <header class="mb-4">
-            <h2 class="display-6 text-center">生成式AI影⾳標籤之動態解釋機制對使⽤者信任校準影響之研究</h2>
             <h5 class="text-center text-muted">目前進度：第 <span id="current-idx-text">1</span> / 24 題</h5>
         </header>
 
         <main>
             <ul class="nav nav-tabs nav-justified" id="experimentTab">
-                <li class="nav-item"><a href="#step-1" id="step-1-tab" data-bs-toggle="tab" class="nav-link h3 active">第一階段</a></li>
-                <li class="nav-item"><a href="#step-2" id="step-2-tab" data-bs-toggle="tab" class="nav-link h3">第二階段</a></li>
-                <li class="nav-item"><a href="#step-3" id="step-3-tab" data-bs-toggle="tab" class="nav-link h3">第三階段</a></li>
+                <li class="nav-item"><a href="#step-1" id="step-1-tab" data-bs-toggle="tab" class="nav-link h3 active">第一步驟</a></li>
+                <li class="nav-item"><a href="#step-2" id="step-2-tab" data-bs-toggle="tab" class="nav-link h3">第二步驟</a></li>
+                <li class="nav-item"><a href="#step-3" id="step-3-tab" data-bs-toggle="tab" class="nav-link h3">第三步驟</a></li>
             </ul>
 
             <div class="tab-content border bg-white p-4 shadow-sm">
@@ -54,7 +53,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-outline-secondary d-block ms-auto" id="go-to-step-2">前往第二階段</button>
+                    <button type="button" class="btn btn-outline-secondary d-block ms-auto" id="go-to-step-2">前往第二步驟</button>
                 </div>
 
                 <div id="step-2" class="tab-pane fade pt-4">
@@ -71,9 +70,9 @@
                                     allowfullscreen>
                                 </iframe>
                             </div>
-                            <h5 id="ai-hint-text" class="text-center mt-3 alert alert-info">AI 提示加載中...</h5>
                         </div>
                         <div class="col-lg-6">
+                            <h5 id="ai-hint-text" class="text-center mt-3 alert alert-info">AI 提示加載中...</h5>
                             <h5 class="text-center my-2">您認爲此影片為真實影片還是AI生成影片？</h5>
                             <div class="form-check mb-3">
                                 <input type="radio" id="p2-real" class="form-check-input" name="p2_choice" value="真實影片">
@@ -83,27 +82,28 @@
                                 <input type="radio" id="p2-ai" class="form-check-input" name="p2_choice" value="AI生成影片">
                                 <label for="p2-ai" class="form-label">AI生成影片</label>
                             </div>
+                            <div class="row my-2 text-center">
+                                <h5>請問到目前為止您對標籤的信任程度為何？</h5>
+                                <div class="btn-group btn-group w-100 mt-2 px-1">
+                                    <input type="radio" class="btn-check" name="trust-a" id="t1" value="1"><label class="btn btn-outline-secondary" for="t1">非常不信任</label>
+                                    <input type="radio" class="btn-check" name="trust-a" id="t2" value="2"><label class="btn btn-outline-secondary" for="t2">不信任</label>
+                                    <input type="radio" class="btn-check" name="trust-a" id="t3" value="3"><label class="btn btn-outline-secondary" for="t3">有點不信任</label>
+                                    <input type="radio" class="btn-check" name="trust-a" id="t4" value="4"><label class="btn btn-outline-secondary" for="t4">普通</label>
+                                    <input type="radio" class="btn-check" name="trust-a" id="t5" value="5"><label class="btn btn-outline-secondary" for="t5">有點信任</label>
+                                    <input type="radio" class="btn-check" name="trust-a" id="t6" value="6"><label class="btn btn-outline-secondary" for="t6">信任</label>
+                                    <input type="radio" class="btn-check" name="trust-a" id="t7" value="7"><label class="btn btn-outline-secondary" for="t7">非常信任</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-outline-secondary ms-auto d-block" id="go-to-step-3">前往第三階段</button>
+                    <button type="button" class="btn btn-outline-secondary ms-auto d-block" id="go-to-step-3">前往第三步驟</button>
                 </div>
 
                 <div id="step-3" class="tab-pane fade pt-4">
                     <div class="alert alert-success text-center mb-4">
                         <h4 id="correct-answer-text">正確答案：加載中...</h4>
                     </div>
-                    <div class="row my-2 text-center">
-                        <h5>請問到目前為止您對AI輔助標籤的信任程度為何？</h5>
-                        <div class="btn-group btn-group-lg w-100 mt-3 px-5">
-                            <input type="radio" class="btn-check" name="trust-a" id="t1" value="1"><label class="btn btn-outline-secondary" for="t1">非常不滿意</label>
-                            <input type="radio" class="btn-check" name="trust-a" id="t2" value="2"><label class="btn btn-outline-secondary" for="t2">不滿意</label>
-                            <input type="radio" class="btn-check" name="trust-a" id="t3" value="3"><label class="btn btn-outline-secondary" for="t3">有點不滿意</label>
-                            <input type="radio" class="btn-check" name="trust-a" id="t4" value="4"><label class="btn btn-outline-secondary" for="t4">普通</label>
-                            <input type="radio" class="btn-check" name="trust-a" id="t5" value="5"><label class="btn btn-outline-secondary" for="t5">有點滿意</label>
-                            <input type="radio" class="btn-check" name="trust-a" id="t6" value="6"><label class="btn btn-outline-secondary" for="t6">滿意</label>
-                            <input type="radio" class="btn-check" name="trust-a" id="t7" value="7"><label class="btn btn-outline-secondary" for="t7">非常滿意</label>
-                        </div>
-                    </div>
+                    
                     
                     <button type="button" id="submitButton" class="btn btn-primary btn-lg mt-5 d-block ms-auto">
                         下一題
