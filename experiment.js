@@ -483,14 +483,17 @@ function renderNextQuestion() {
     const q = questions[currentIndex];
     let displayHint = "";
 
-    // --- 完全給現行標籤 ---
+    // --- 完全根據信任分數決定解釋類型，不論影片真偽 ---
     if (lastTrustScore < 3) {
-        displayHint = q.nowtag;
-        currentHintType = "Nowtag";
+        // 低信任度 -> 給予「正面（對比）」解釋
+        displayHint = q.Positive;
+        currentHintType = "Positive";
     } else if (lastTrustScore > 5) {
-        displayHint = q.nowtag;
-        currentHintType = "Nowtag";
+        // 高信任度 -> 給予「反面」解釋
+        displayHint = q.Negative;
+        currentHintType = "Negative";
     } else {
+        // 中等信任度 -> 給予「現行」解釋
         displayHint = q.nowtag;
         currentHintType = "Nowtag";
     }
