@@ -41,8 +41,9 @@
                                 </iframe>
                             </div>
                         </div>
+                        
                         <div class="col-lg-6">
-                            <h5 class="text-center my-2">您認爲此影片為真實影片還是AI生成影片？</h5>
+                            <h5 class="text-left my-2">Q1：您認爲此影片為真實影片還是AI生成影片？</h5>
                             <div class="form-check mb-3">
                                 <input type="radio" id="p1-real" class="form-check-input" name="p1_choice" value="真實影片">
                                 <label for="p1-real" class="form-label">真實影片</label>
@@ -72,8 +73,9 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <h5 id="ai-hint-text" class="text-center mt-3 alert alert-info">AI 提示加載中...</h5>
-                            <h5 class="text-center my-2">您認爲此影片為真實影片還是AI生成影片？</h5>
+                            <h5 id="ai-hint-text" class="text-left mt-3 alert alert-info">AI 提示加載中...</h5>
+                            <hr style="height: 5px;">
+                            <h5 class="text-left my-2">Q1：您認爲此影片為真實影片還是AI生成影片？</h5>
                             <div class="form-check mb-3">
                                 <input type="radio" id="p2-real" class="form-check-input" name="p2_choice" value="真實影片">
                                 <label for="p2-real" class="form-label">真實影片</label>
@@ -82,8 +84,8 @@
                                 <input type="radio" id="p2-ai" class="form-check-input" name="p2_choice" value="AI生成影片">
                                 <label for="p2-ai" class="form-label">AI生成影片</label>
                             </div>
-                            <div class="row my-2 text-center">
-                                <h5>請問到目前為止您對標籤的信任程度為何？</h5>
+                            <div class="row my-2 text-left">
+                                <h5>Q2：請問到目前為止您對標籤的信任程度為何？</h5>
                                 <div class="btn-group btn-group w-100 mt-2 px-1">
                                     <input type="radio" class="btn-check" name="trust-a" id="t1" value="1"><label class="btn btn-outline-secondary" for="t1">非常不信任</label>
                                     <input type="radio" class="btn-check" name="trust-a" id="t2" value="2"><label class="btn btn-outline-secondary" for="t2">不信任</label>
@@ -191,7 +193,95 @@
                                         <label class="form-check-label" for="e4">博士 (含在學)</label>
                                     </div>
                                 </div>
-                
+
+                                <!-- AI生成影片工具使用經驗 -->
+                                <div class="mb-4">
+                                    <label class="form-label fw-bold">4. 您曾使用哪些 AI 生成影片工具？（可複選）</label>
+                                    <div class="form-check mb-2">
+                                      <input class="form-check-input" type="checkbox" name="tool" value="Seedance2.0" id="videotool1">
+                                      <label class="form-check-label" for="videotool1">Seedance2.0</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                      <input class="form-check-input" type="checkbox" name="tool" value="Kling" id="videotool2">
+                                      <label class="form-check-label" for="videotool2">Kling AI</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                      <input class="form-check-input" type="checkbox" name="tool" value="Hailuo" id="videotool3">
+                                      <label class="form-check-label" for="videotool3">海螺 AI（Hailuo AI）</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                      <input class="form-check-input" type="checkbox" name="tool" value="Google_Veo_3" id="videotool4">
+                                      <label class="form-check-label" for="videotool4">Google Veo 3</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                      <input class="form-check-input" type="checkbox" name="tool" value="Sora" id="videotool5">
+                                      <label class="form-check-label" for="videotool5">OpenAI Sora</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                      <input class="form-check-input" type="checkbox" name="tool" value="DeeVid" id="videotool6">
+                                      <label class="form-check-label" for="videotool6">DeeVid AI</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                      <input class="form-check-input" type="checkbox" name="tool" value="Runway" id="videotool7">
+                                      <label class="form-check-label" for="videotool7">Runway</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="tool" value="otherstool" id="videotool8">
+                                        <label class="form-check-label" for="videotool8">其他工具</label>
+                                    </div>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" name="tool" value="nonetool" id="videotool9">
+                                      <label class="form-check-label" for="videotool9">無使用經驗</label>
+                                    </div>
+                                </div>
+                                <!-- 使用AI生成影片工具多久 -->
+                                <div class="mb-4">
+                                    <label class="form-label fw-bold">5. 您使用AI生成影片工具已有多久時間？</label>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="time" value="over3years" id="time1" required>
+                                        <label class="form-check-label" for="time1">使用超過3年</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="time" value="between1-3years" id="time2">
+                                        <label class="form-check-label" for="time2">使用1-3年</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="time" value="below1year" id="time3">
+                                        <label class="form-check-label" for="time3">使用不到一年</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="time" value="nonetime" id="time4">
+                                        <label class="form-check-label" for="time4">無使用經驗</label>
+                                    </div>
+                                </div>
+                                <!-- 平均多久使用AI生成影片工具 -->
+                                <div class="mb-4">
+                                    <label class="form-label fw-bold">6. 您平均多久會使用一次AI生成影片工具？</label>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="frequency" value="everyday" id="freq1" required>
+                                        <label class="form-check-label" for="freq1">每天都會使用</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="frequency" value="4-6times" id="freq2">
+                                        <label class="form-check-label" for="freq2">每週使用4~6次</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="frequency" value="2-3times" id="freq3">
+                                        <label class="form-check-label" for="freq3">每週使用2~3次</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="frequency" value="once" id="freq4">
+                                        <label class="form-check-label" for="freq4">每週使用1次</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="frequency" value="flexible" id="freq5">
+                                        <label class="form-check-label" for="freq5">沒有固定使用習慣</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="frequency" value="nonefreq" id="freq6">
+                                        <label class="form-check-label" for="freq6">無使用經驗</label>
+                                    </div>
+                                </div>
                                 <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">結束實驗</button>
                             </form>
                         </div>
