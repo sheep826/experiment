@@ -417,14 +417,10 @@ document.querySelector('#submitButton').addEventListener('click', async function
         // ⭐ 正確答案（之後可以直接算 accuracy）
         answer: q.answer
     };
-
-    await new Promise(resolve => {
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', APPS_SCRIPT_URL);
-        xhr.setRequestHeader('Content-Type', 'text/plain');
-        xhr.onloadend = resolve;
-        xhr.send(JSON.stringify({ action: "submit_step", ...payload }));
-    });
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', APPS_SCRIPT_URL);
+    xhr.setRequestHeader('Content-Type', 'text/plain');
+    xhr.send(JSON.stringify({ action: "submit_step", ...payload }));
     lastTrustScore = parseInt(trust.value);
 
     if (currentIndex < questions.length - 1) {
@@ -567,13 +563,10 @@ document.getElementById('demographicForm').addEventListener('submit', async func
     };
 
     try {
-        await new Promise(resolve => {
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', APPS_SCRIPT_URL);
-            xhr.setRequestHeader('Content-Type', 'text/plain');
-            xhr.onloadend = resolve;
-            xhr.send(JSON.stringify({ action: "submit_demographics", ...demoPayload }));
-        });
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', APPS_SCRIPT_URL);
+        xhr.setRequestHeader('Content-Type', 'text/plain');
+        xhr.send(JSON.stringify({ action: "submit_demographics", ...demoPayload }));
         alert("實驗完成！感謝您的貢獻。");
         document.body.innerHTML = '<div style="text-align:center;margin-top:20vh"><h1>實驗結束，感謝您的參與！</h1></div>';
     } catch (err) {
